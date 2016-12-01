@@ -4,14 +4,14 @@ echo
 echo "Updating your packages"
 echo
 
-    apt-get update
-    apt-get upgrade
+    sudo apt-get update
+    sudo apt-get upgrade
 
 echo
 echo "Installing Dependencies..."
 echo
 
-    apt-get -y install build-essential cmake pkg-config libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk2.0-dev libatlas-base-dev gfortran python2.7-dev python3-dev
+    sudo apt-get -y install build-essential cmake pkg-config libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk2.0-dev libatlas-base-dev gfortran python2.7-dev python3-dev
 
 echo
 echo "Downloading OpenCV 3.1.0..."
@@ -34,14 +34,14 @@ echo "Downloading and installing pip..."
 echo
 
     wget https://bootstrap.pypa.io/get-pip.py
-    python get-pip.py
+    sudo python get-pip.py
 
 echo
 echo "Downloading and installing virtualenv..."
 echo
 
-    pip install virtualenv virtualenvwrapper
-    rm -rf ~/.cache/pip
+    sudo pip install virtualenv virtualenvwrapper
+    sudo rm -rf ~/.cache/pip
 
     echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.profile
     echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.profile
@@ -82,6 +82,11 @@ echo
         -D BUILD_EXAMPLES=ON ..
 
 echo
+echo "Check the Python3 section"
+echo
+read -p "Press any key to continue... " -n1 -s
+
+echo
 echo "Compiling OpenCV..."
 echo
 
@@ -91,15 +96,14 @@ echo
 echo "Installing OpenCV..."
 echo
 
-    make install
-    ldconfig
+    sudo make install
+    sudo ldconfig
 
 echo
 echo "Finishing OpenCV..."
 echo
 
     cd /usr/local/lib/python3.4/site-packages/
-    mv cv2.cpython-34m.so cv2.so
+    sudo mv cv2.cpython-34m.so cv2.so
     cd ~/.virtualenvs/cv/lib/python3.4/site-packages/
     ln -s /usr/local/lib/python3.4/site-packages/cv2.so cv2.so
-
